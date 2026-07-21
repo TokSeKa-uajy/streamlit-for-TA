@@ -15,7 +15,7 @@ warnings.filterwarnings('ignore')
 # ==========================================
 st.set_page_config(page_title="Dashboard Evaluasi Model Trading", layout="wide")
 
-MODEL_DIRECTORY = "model/"
+MODEL_DIRECTORY = "model"
 DATA_BTC_RAW = "data/btc_raw.csv"  
 ARCHITECTURES = ["LSTM", "GRU", "XGB"]
 TOTAL_PERIODS = 5
