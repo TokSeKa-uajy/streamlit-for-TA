@@ -15,8 +15,9 @@ warnings.filterwarnings('ignore')
 # ==========================================
 st.set_page_config(page_title="Dashboard Evaluasi Model Trading", layout="wide")
 
-MODEL_DIRECTORY = "model/"
-DATA_BTC_RAW = "data/btc_raw.csv"  
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIRECTORY = os.path.join(BASE_DIR, "model")
+DATA_BTC_RAW = os.path.join(BASE_DIR, "data", "btc_raw.csv")
 ARCHITECTURES = ["LSTM", "GRU", "XGB"]
 TOTAL_PERIODS = 5
 INITIAL_CAPITAL = 1000.0
