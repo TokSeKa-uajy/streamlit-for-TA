@@ -35,29 +35,6 @@ COMBINATIONS = [
     (['news'], "+ News")
 ]
 
-st.write("### 🔍 Cek Sub-Folder (Deep Debugging)")
-
-# Kita ambil contoh arsitektur XGB
-xgb_dir = os.path.join(MODEL_DIRECTORY, "XGB")
-if os.path.exists(xgb_dir):
-    st.write("✅ Folder 'XGB' ketemu! Isinya:", os.listdir(xgb_dir))
-    
-    # Kodinganmu memanggil f"{arch}_{variant_upper}" -> "XGB_MURNI"
-    xgb_murni_dir = os.path.join(xgb_dir, "XGB_MURNI")
-    if os.path.exists(xgb_murni_dir):
-        st.write("✅ Folder 'XGB_MURNI' ketemu! Isinya:", os.listdir(xgb_murni_dir))
-        
-        # Cek lebih dalam lagi ke Arsip_Ujian_Silang
-        arsip_dir = os.path.join(xgb_murni_dir, "Arsip_Ujian_Silang")
-        if os.path.exists(arsip_dir):
-            st.write("✅ Folder 'Arsip_Ujian_Silang' ketemu! Isinya:", os.listdir(arsip_dir))
-        else:
-            st.error(f"❌ Folder 'Arsip_Ujian_Silang' TIDAK ADA di dalam {xgb_murni_dir}. Cek huruf kapitalnya!")
-            
-    else:
-        st.error(f"❌ Folder 'XGB_MURNI' TIDAK ADA di dalam {xgb_dir}. Jangan-jangan di GitHub tulisannya 'XGB_Murni' atau 'xgb_murni'?")
-else:
-    st.error("❌ Folder 'XGB' TIDAK DITEMUKAN!")
 # ==========================================
 # FUNGSI BACKEND UTAMA (Di-Cache)
 # ==========================================
@@ -265,10 +242,9 @@ def get_buy_and_hold_roi_dynamic(target_period):
     all_returns, all_lows, all_highs = [], [], []
     
     for p in periods_to_run:
-        dir_path = os.path.join(MODEL_DIRECTORY, "XGB", "XGB_MURNI", "Arsip_Ujian_Silang", f"Model_{p:02d}_di_Masa_{p:02d}")
-        pred_file = os.path.join(dir_path, 'database_prediksi_mentah.csv')
-        if os.path.exists(pred_file):
-            df = pd.read_csv(pred_file)
+        path = os.path.join(MODEL_DIRECTORY, 'XGB', 'XGB_murni', 'Arsip_Ujian_Silang', f'Model_{p:02d}_di_Masa_{p:02d}', 'database_prediksi_mentah.csv')
+        if os.path.exists(path):
+            df = pd.read_csv(path)
             all_returns.extend(df['wasit_target'].values)
             all_lows.extend(df['wasit_low'].values)
             all_highs.extend(df['wasit_high'].values)
@@ -298,7 +274,7 @@ def load_all_dashboard_data(target_period, sl_pct, tp_pct):
     for arch in ARCHITECTURES:
         for comb, label in COMBINATIONS:
             variant = "_".join(comb) if comb else "murni"
-            vdir = variant.upper()
+            vdir = variant.lower()
             model_name = f"{arch} - {label}"
             
             s_metrics, s_eq = evaluate_ensemble_scenario_full(arch, vdir, 'statis', target_period, sl_pct, tp_pct)
@@ -325,7 +301,7 @@ def build_prediction_database():
     records = []
     for arch in ARCHITECTURES:
         for comb, label in COMBINATIONS:
-            variant_upper = "_".join(comb).upper() if comb else "MURNI"
+            variant_upper = "_".join(comb).lower() if comb else "murni"
             for mode in ['statis', 'berkala']:
                 for eval_period in range(1, TOTAL_PERIODS + 1):
                     model_id = 0 if mode == 'statis' else eval_period
@@ -526,7 +502,7 @@ with tab3:
         arch_part, data_part = model_choice.split(" - ")
         arch_choice = arch_part.strip()
         comb_str = data_part.replace("+ ", "").lower()
-        variant_upper = "MURNI" if "baseline" in comb_str else comb_str.upper()
+        variant_upper = "murni" if "baseline" in comb_str else comb_str.lower()
         
         y_stat, y_berk = get_compounding_history(arch_choice, variant_upper, sl_pct, tp_pct)
         x_labels = ["Start"] + [f"Masa {p}" for p in range(1, TOTAL_PERIODS + 1)]
