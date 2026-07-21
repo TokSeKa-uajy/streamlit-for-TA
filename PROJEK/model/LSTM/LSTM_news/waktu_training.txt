@@ -1,0 +1,5 @@
+Laporan Metrik Operasional: ../MODEL/LSTM/LSTM_NEWS
+========================================
+Total Siklus Validasi    : 10
+Total Estimator          : 50
+Durasi Komputasi Absolut : 33.28 menit

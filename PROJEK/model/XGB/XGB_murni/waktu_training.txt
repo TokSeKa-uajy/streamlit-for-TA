@@ -1,0 +1,5 @@
+Laporan Metrik Operasional: ../MODEL/XGB/XGB_MURNI
+========================================
+Total Siklus Validasi    : 10
+Total Estimator          : 50
+Durasi Komputasi Absolut : 5.45 menit

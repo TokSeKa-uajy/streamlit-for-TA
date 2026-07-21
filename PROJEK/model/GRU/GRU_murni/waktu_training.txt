@@ -1,0 +1,5 @@
+Laporan Metrik Operasional: ../MODEL/GRU/GRU_MURNI
+========================================
+Total Siklus Validasi    : 10
+Total Estimator          : 50
+Durasi Komputasi Absolut : 95.07 menit

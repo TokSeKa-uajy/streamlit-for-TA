@@ -1,0 +1,5 @@
+Laporan Metrik Operasional: ../MODEL/GRU/GRU_VIX
+========================================
+Total Siklus Validasi    : 10
+Total Estimator          : 50
+Durasi Komputasi Absolut : 86.04 menit

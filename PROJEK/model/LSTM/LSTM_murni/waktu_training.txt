@@ -1,0 +1,5 @@
+Laporan Metrik Operasional: ../MODEL/LSTM/LSTM_MURNI
+========================================
+Total Siklus Validasi    : 10
+Total Estimator          : 50
+Durasi Komputasi Absolut : 78.07 menit

@@ -1,0 +1,5 @@
+Laporan Metrik Operasional: ../MODEL/XGB/XGB_VIX
+========================================
+Total Siklus Validasi    : 10
+Total Estimator          : 50
+Durasi Komputasi Absolut : 4.03 menit

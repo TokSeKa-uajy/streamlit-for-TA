@@ -1,0 +1,5 @@
+Laporan Metrik Operasional: ../MODEL/GRU/GRU_DXY
+========================================
+Total Siklus Validasi    : 10
+Total Estimator          : 50
+Durasi Komputasi Absolut : 33.70 menit
