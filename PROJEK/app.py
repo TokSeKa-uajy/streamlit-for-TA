@@ -35,23 +35,29 @@ COMBINATIONS = [
     (['news'], "+ News")
 ]
 
-# Tambahkan ini di bawah DATA_BTC_RAW = ...
-st.write("### 🔍 Area Cek File (Debugging)")
-st.write(f"Lokasi utama saat ini: {BASE_DIR}")
+st.write("### 🔍 Cek Sub-Folder (Deep Debugging)")
 
-# Cek folder model
-if os.path.exists(MODEL_DIRECTORY):
-    st.write("✅ Folder 'model' ketemu! Isinya:", os.listdir(MODEL_DIRECTORY))
+# Kita ambil contoh arsitektur XGB
+xgb_dir = os.path.join(MODEL_DIRECTORY, "XGB")
+if os.path.exists(xgb_dir):
+    st.write("✅ Folder 'XGB' ketemu! Isinya:", os.listdir(xgb_dir))
+    
+    # Kodinganmu memanggil f"{arch}_{variant_upper}" -> "XGB_MURNI"
+    xgb_murni_dir = os.path.join(xgb_dir, "XGB_MURNI")
+    if os.path.exists(xgb_murni_dir):
+        st.write("✅ Folder 'XGB_MURNI' ketemu! Isinya:", os.listdir(xgb_murni_dir))
+        
+        # Cek lebih dalam lagi ke Arsip_Ujian_Silang
+        arsip_dir = os.path.join(xgb_murni_dir, "Arsip_Ujian_Silang")
+        if os.path.exists(arsip_dir):
+            st.write("✅ Folder 'Arsip_Ujian_Silang' ketemu! Isinya:", os.listdir(arsip_dir))
+        else:
+            st.error(f"❌ Folder 'Arsip_Ujian_Silang' TIDAK ADA di dalam {xgb_murni_dir}. Cek huruf kapitalnya!")
+            
+    else:
+        st.error(f"❌ Folder 'XGB_MURNI' TIDAK ADA di dalam {xgb_dir}. Jangan-jangan di GitHub tulisannya 'XGB_Murni' atau 'xgb_murni'?")
 else:
-    st.error("❌ Folder 'model' TIDAK DITEMUKAN di lokasi tersebut!")
-
-# Cek folder data
-data_dir = os.path.join(BASE_DIR, "data")
-if os.path.exists(data_dir):
-    st.write("✅ Folder 'data' ketemu! Isinya:", os.listdir(data_dir))
-else:
-    st.error("❌ Folder 'data' TIDAK DITEMUKAN di lokasi tersebut!")
-
+    st.error("❌ Folder 'XGB' TIDAK DITEMUKAN!")
 # ==========================================
 # FUNGSI BACKEND UTAMA (Di-Cache)
 # ==========================================
