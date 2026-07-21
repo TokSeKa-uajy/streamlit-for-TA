@@ -10,6 +10,8 @@ from sklearn.metrics import accuracy_score, f1_score, precision_recall_fscore_su
 
 warnings.filterwarnings('ignore')
 
+
+
 # ==========================================
 # KONFIGURASI SISTEM
 # ==========================================
@@ -32,6 +34,23 @@ COMBINATIONS = [
     (['vix'], "+ VIX"),
     (['news'], "+ News")
 ]
+
+# Tambahkan ini di bawah DATA_BTC_RAW = ...
+st.write("### 🔍 Area Cek File (Debugging)")
+st.write(f"Lokasi utama saat ini: {BASE_DIR}")
+
+# Cek folder model
+if os.path.exists(MODEL_DIRECTORY):
+    st.write("✅ Folder 'model' ketemu! Isinya:", os.listdir(MODEL_DIRECTORY))
+else:
+    st.error("❌ Folder 'model' TIDAK DITEMUKAN di lokasi tersebut!")
+
+# Cek folder data
+data_dir = os.path.join(BASE_DIR, "data")
+if os.path.exists(data_dir):
+    st.write("✅ Folder 'data' ketemu! Isinya:", os.listdir(data_dir))
+else:
+    st.error("❌ Folder 'data' TIDAK DITEMUKAN di lokasi tersebut!")
 
 # ==========================================
 # FUNGSI BACKEND UTAMA (Di-Cache)
